@@ -1,6 +1,6 @@
 ### JSON editor
 
-Served in Heroku: ![https://json-editor-1.herokuapp.com/](https://json-editor-1.herokuapp.com/)
+Served in Heroku: [https://json-editor-1.herokuapp.com/](https://json-editor-1.herokuapp.com/)
 
 ![](./images/screenshot.png)
 

@@ -1,7 +1,6 @@
 const mongodb = require('mongodb');
 
 let jsons;
-const DB_NAME = "jsonDB";
 
 class JsonsDAO {
 
@@ -10,7 +9,7 @@ class JsonsDAO {
             return
         }
         try {
-            jsons = await conn.db(DB_NAME).collection('jsons');
+            jsons = await conn.db(process.env.DB_NAME).collection('jsons');
         } catch (e) {
             console.error(e);
         }

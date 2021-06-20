@@ -1,5 +1,4 @@
 const express = require('express');
-//import JsonsDAO from '../dao/jsonsDAO.js';
 const JsonsDAO = require('../dao/jsonsDAO');
 
 const router = express.Router();
@@ -17,5 +16,5 @@ router.route('/')
     
 });
 
-//export default router;
+
 module.exports = router;

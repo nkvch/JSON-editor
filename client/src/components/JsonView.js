@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import HTTPservice from '../services/HTTPservice.js';
 
 
 const JsonView = (props) => {
@@ -7,7 +6,7 @@ const JsonView = (props) => {
     const [obj, setObj] = useState({});
     const comma = props.comma;
     const [keys, setKeys] = useState([]);
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(props.show || false);
 
     useEffect(() => {
         setObj(props.obj)
@@ -74,10 +73,10 @@ const JsonView = (props) => {
         <div className="d-inline-block">
         <button className="my-button" onClick={() => {setShow(!show)}}>
         {show 
-        ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+        ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-down-fill" viewBox="0 0 16 16">
         <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
         </svg> 
-        : <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+        : <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-right-fill" viewBox="0 0 16 16">
         <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
         </svg>
         }
@@ -93,7 +92,7 @@ const JsonView = (props) => {
             {
                 keys.map((key, idx) => {
                 return (
-                    <div>{
+                    <div key={idx}>{
                         typeof obj[key] === 'object' && !Array.isArray(obj[key])
                         && <div className="d-flex">
                             <div className="d-inline-block">{`${key}: `}</div>
@@ -133,14 +132,24 @@ const JsonView = (props) => {
                             typeof obj[key] === 'number'
                             && <div className="d-inline-block">
                             <label className="form-label">{`${key}: `}</label>
-                            <input className="form-control d-inline-block ms-2" name={key} type="number" value={obj[key]} onChange={handleNumberChange}></input>
+                            <input 
+                            className="form-control d-inline-block ms-2" 
+                            name={key} 
+                            type="number" 
+                            value={obj[key]} 
+                            onChange={handleNumberChange}></input>
                             {(idx !== keys.length - 1) && ','}</div>
                         }
                         {
                             typeof obj[key] === 'string'
                             && <div className="d-inline-block">
                             <label className="form-label">{`${key}: `}</label>
-                            <input className="form-control d-inline-block ms-2" name={key} type="text" value={obj[key]} onChange={handleChange}></input>
+                            <input 
+                            className="form-control d-inline-block ms-2" 
+                            name={key} 
+                            type="text" 
+                            value={obj[key]} 
+                            onChange={handleChange}></input>
                             {(idx !== keys.length - 1) && ','}</div>
                         }
                     </div>
@@ -237,7 +246,7 @@ const ArrayView = (props) => {
                             show
                             ? array.map((item, idx) => {
                             return (
-                                <div>
+                                <div key={idx}>
                                     {
                                         typeof item === 'object' && !Array.isArray(item)
                                         && <div className="d-flex">
@@ -298,7 +307,12 @@ const ArrayView = (props) => {
                                         </svg>
                                         </button>
                                         <label className="form-label">{`${idx}: `}</label>
-                                        <input className="form-control d-inline-block ms-2" name={idx} type="number" value={array[idx]} onChange={handleNumberChange}></input>
+                                        <input 
+                                        className="form-control d-inline-block ms-2" 
+                                        name={idx} 
+                                        type="number" 
+                                        value={array[idx]} 
+                                        onChange={handleNumberChange}></input>
                                         {(idx !== array.length - 1) && ','}</div>
                                     }
                                     {
@@ -310,7 +324,12 @@ const ArrayView = (props) => {
                                         </svg>
                                         </button>
                                         <label className="form-label">{`${idx}: `}</label>
-                                        <input className="form-control d-inline-block ms-2" name={idx} type="text" value={array[idx]} onChange={handleChange}></input>
+                                        <input 
+                                        className="form-control d-inline-block ms-2" 
+                                        name={idx} 
+                                        type="text" 
+                                        value={array[idx]} 
+                                        onChange={handleChange}></input>
                                         {(idx !== array.length - 1) && ','}</div>
                                     }
                                 </div>

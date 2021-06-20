@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const jsons = require('./routes/postJson');
+const jsons = require('./routes/jsons.js');
 const path = require('path');
 const dotenv = require('dotenv');
 const mongodb = require('mongodb');
@@ -42,7 +42,7 @@ MongoClient.connect()
 .then(async(conn) => {
     await JsonsDAO.injectDB(conn);
     app.listen(process.env.PORT || port, () => {
-        console.log(`listening on port ${process.env.PORT}`);
+        console.log(`listening on port ${process.env.PORT || port}`);
     });
 });
 

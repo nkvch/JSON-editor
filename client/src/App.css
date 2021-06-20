@@ -16,3 +16,13 @@ input[type="text"] {
 .pop-button {
   color: rgb(192, 23, 23);
 }
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+.alert {
+  width: fit-content;
+  left: auto;
+}

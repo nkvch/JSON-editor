@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-//const API_JSON_CONTROLLER_URL = '/jsons';
-
 export default class HTTPservice {
 
     static post(obj) {
@@ -20,4 +18,5 @@ export default class HTTPservice {
         console.log(_id);
         return axios.patch(`/jsons/${_id}`, obj);
     }
+
 }

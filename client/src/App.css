@@ -1,0 +1,18 @@
+input[type="number"] {
+  width: 100px;
+}
+
+input[type="text"] {
+  width: 250px;
+}
+
+.my-button {
+  background: none;
+  width: fit-content;
+  height: fit-content;
+  border: 0;
+}
+
+.pop-button {
+  color: rgb(192, 23, 23);
+}

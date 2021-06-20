@@ -9,7 +9,7 @@ class JsonsDAO {
             return
         }
         try {
-            jsons = await conn.db('jsonDB').collection('jsons');
+            jsons = await conn.db(process.env.DB_NAME).collection('jsons');
         } catch (e) {
             console.error(e);
         }

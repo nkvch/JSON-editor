@@ -10,7 +10,7 @@ dotenv.config();
 
 const port = 8080;
 
-const MongoClient = mongodb.MongoClient("mongodb+srv://stasok:abcd1234@cluster0.hgwuq.mongodb.net/?retryWrites=true&w=majority", {
+const MongoClient = mongodb.MongoClient(process.env.DB_ACCESS_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });

@@ -19,8 +19,14 @@ function App() {
   const [findSuccess, setFindSuccess] = useState(false);
 
   const fetching = async(url) => {
-    const res = await fetch(url);
-    const rawData = await res.text();
+    const res = await fetch(url)
+    .catch(e => {
+      setNoneFound(true);
+      setTimeout(() => {
+        setNoneFound(false);
+      }, 5000);
+    });
+    const rawData = res ? await res.text() : '';
     return rawData;
   }
 
@@ -124,7 +130,7 @@ function App() {
             noneFound
             && <div className="pt-4 px-5 bg-dark text-light d-flex flex-column justify-content-center align-items-center">
               <div className="alert alert-danger" role="alert">
-                Nothing found on this URL
+                Nothing found on this URL or error occured while fetching
               </div>
             </div> 
           }

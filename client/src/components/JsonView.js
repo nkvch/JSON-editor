@@ -27,7 +27,6 @@ const JsonView = (props) => {
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        
         const changedValue = {
             [name]: value
         };
@@ -141,7 +140,21 @@ const JsonView = (props) => {
                             {(idx !== keys.length - 1) && ','}</div>
                         }
                         {
-                            typeof obj[key] === 'string'
+                            typeof obj[key] === 'string' && /^#\w\w\w\w\w\w$/.test(obj[key])
+                            && <div className="d-inline-block">
+                            <label className="form-label">{`${key}: `}</label>
+                            <input
+                            className="d-inline-block ms-2"
+                            name={key}
+                            type="color"
+                            value={obj[key]}
+                            onChange={handleChange}
+                            >
+                            </input>
+                            </div>
+                        }
+                        {
+                            typeof obj[key] === 'string' && !/^#\w\w\w\w\w\w$/.test(obj[key])
                             && <div className="d-inline-block">
                             <label className="form-label">{`${key}: `}</label>
                             <input 

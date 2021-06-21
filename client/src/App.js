@@ -26,7 +26,13 @@ function App() {
         setNoneFound(false);
       }, 5000);
     });
-    const rawData = res ? await res.text() : '';
+    if (!res) { return ''; }
+    let rawData;
+    if (/\.json$/.test(res.url)) {
+      rawData = await res.json();
+    } else {
+      rawData = await res.text()
+    }
     return rawData;
   }
 
@@ -38,8 +44,7 @@ function App() {
 
   const handleSearch = async() => {
     const rawData = await fetching(url);
-    const foundJson = JsonService.findJson(rawData, 0);
-    console.log(foundJson);
+    const foundJson = typeof rawData === 'object' ? rawData : JsonService.findJson(rawData, 0);
     if (foundJson) {
       setObj(foundJson);
       setMongoId(null);

@@ -6,7 +6,11 @@ Served in Heroku: [https://json-editor-1.herokuapp.com/](https://json-editor-1.h
 
 ### Set up
 
-To install client dependencies run
+To install client dependencies first of all clone the root directory
+
+`git clone https://github.com/nkvch/JSON-editor1 `
+
+Then in the root directory run to install React-app dependencies
 
 `npm run client-install`
 

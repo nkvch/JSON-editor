@@ -4,7 +4,7 @@ Served in Heroku: [https://json-editor-1.herokuapp.com/](https://json-editor-1.h
 
 ![](./images/screenshot.png)
 
-#### Set up
+### Set up
 
 To install client dependencies run
 
@@ -13,3 +13,8 @@ To install client dependencies run
 To run the app run
 
 `npm run dev`
+
+### Technology stack
+
+App is build on MERN stack. Client is a React application build on Hooks, server is NodeJS Express app, MongoDB Atlas is used as remote data storage to save JSONs.
+ 

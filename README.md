@@ -6,5 +6,10 @@ Served in Heroku: [https://json-editor-1.herokuapp.com/](https://json-editor-1.h
 
 #### Set up
 
-To install client dependencies run `npm run client-install`
-To run the app `npm run dev`
+To install client dependencies run
+
+`npm run client-install`
+
+To run the app run
+
+`npm run dev`

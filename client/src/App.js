@@ -44,7 +44,11 @@ function App() {
 
   const handleSearch = async() => {
     const rawData = await fetching(url);
-    const foundJson = typeof rawData === 'object' ? rawData : JsonService.findJson(rawData, 0);
+    const foundJson = typeof rawData === 'object' 
+    ? Array.isArray(rawData)
+    ? { array: rawData }
+    : rawData
+    : JsonService.findJson(rawData, 0);
     if (foundJson) {
       setObj(foundJson);
       setMongoId(null);

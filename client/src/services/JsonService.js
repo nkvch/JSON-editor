@@ -14,7 +14,7 @@ export class JsonService {
         }
         // pseudo-walidacja JSONa polegająca na tym że json w teorii nie ma w sobie symboli = ; ( ) właściwych dla funkcji JS
         // walidacja służy celom pseudo-bezpieczności (uniknięcie ewaluacji jakiegoś kodu zewnętrznego, jeżeli taki znajdzie się pod podanym adresem)
-        // szczególnie służy do wyodrębnienia JSONa s js-pliku pod adresem https://std.wpcdn.pl/adv/config/inline/desktop-pudelek.pl.js 
+        // szczególnie służy do wyodrębnienia JSONa s js-pliku pod adresem https://std.wpcdn.pl/adv/config/inline/desktop-pudelek.pl.js
         const matched = str.match(/(\{|\[)[^;=\(\)]*(\}|\])/) ? str.match(/(\{|\[)[^;=\(\)]*(\}|\])/)[0] : undefined;
         try {
             const object = eval('(' + matched + ')');

@@ -1,0 +1,131 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "./scss/mixins";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+}
+
+.App {
+  height: 100vh;
+}
+
+input[type="number"] {
+  width: 100px;
+}
+
+input[type="text"] {
+  width: 250px;
+}
+
+.my-button {
+  background: none;
+  width: fit-content;
+  height: fit-content;
+  border: 0;
+}
+
+.pop-button {
+  color: rgb(192, 23, 23);
+}
+
+a {
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
+  &.log-link {
+    &:hover {
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+.button-cover {
+  background-color: $light;
+  opacity: 0.7;
+  z-index: 1000;
+  bottom: 0;
+  right: 0;
+  @include centralize(row);
+  p {
+    width: fit-content;
+    margin: 0;
+    font-size: large;
+  }
+  &.buttons-auth-cover {
+    @include media-breakpoint-up(sm) {
+      top: 0;
+      left: 33%;
+      width: 67%;
+    }
+    @include media-breakpoint-down(sm) {
+      top: 33%;
+      left: 0;
+    }
+  }
+  &.no-saved-cover {
+    @include media-breakpoint-up(sm) {
+      top: 0;
+      left: 60%;
+      width: 40%;
+    }
+    @include media-breakpoint-down(sm) {
+      top: 67%;
+      left: 0;
+    }
+  }
+  
+}
+
+
+.alert {
+  width: fit-content;
+  left: auto;
+
+  &.valid-form-alert {
+    width: 100%;
+    margin-top: 7px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+.loading-component {
+  @include absoluteFullScreen();
+  background-color: $light;
+  opacity: 0.7;
+  z-index: 1500;
+  @include centralize(column);
+  .spinner-border {
+    width: 100px;
+    height: 100px;
+    @include media-breakpoint-down(sm) {
+      width: 60px;
+      height: 60px;
+    }
+  }
+}
+
+.main-alert {
+  
+}
+
+.alerts-component {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  right: 10%;
+  z-index: 1600;
+  .alert {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+}

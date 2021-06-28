@@ -1,3 +1,16 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+}
+
+.App {
+  height: 100vh;
+}
+
 input[type="number"] {
   width: 100px;
 }
@@ -8,13 +21,17 @@ input[type="text"] {
 
 .my-button {
   background: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   border: 0;
 }
 
 .pop-button {
-  color: rgb(192, 23, 23);
+  color: #c01717;
 }
 
 a.disabled {
@@ -22,7 +39,130 @@ a.disabled {
   cursor: default;
 }
 
+a.log-link:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.button-cover {
+  background-color: #f8f9fa;
+  opacity: 0.7;
+  z-index: 1000;
+  bottom: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.button-cover p {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0;
+  font-size: large;
+}
+
+@media (min-width: 576px) {
+  .button-cover.buttons-auth-cover {
+    top: 0;
+    left: 33%;
+    width: 67%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .button-cover.buttons-auth-cover {
+    top: 33%;
+    left: 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .button-cover.no-saved-cover {
+    top: 0;
+    left: 60%;
+    width: 40%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .button-cover.no-saved-cover {
+    top: 67%;
+    left: 0;
+  }
+}
+
 .alert {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   left: auto;
 }
+
+.alert.valid-form-alert {
+  width: 100%;
+  margin-top: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.loading-component {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #f8f9fa;
+  opacity: 0.7;
+  z-index: 1500;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.loading-component .spinner-border {
+  width: 100px;
+  height: 100px;
+}
+
+@media (max-width: 575.98px) {
+  .loading-component .spinner-border {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.alerts-component {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  right: 10%;
+  z-index: 1600;
+}
+
+.alerts-component .alert {
+  width: 100%;
+  margin-top: 20px;
+}
+/*# sourceMappingURL=App.css.map */

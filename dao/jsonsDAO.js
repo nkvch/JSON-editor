@@ -11,6 +11,9 @@ class JsonsDAO {
         }
         try {
             jsons = await conn.db(process.env.DB_NAME).collection('jsons');
+            // conn.db(process.env.DB_NAME).createCollection('jsonsYOPTA', async(e, coll) => {
+            //     jsons = await conn.db(process.env.DB_NAME).collection('jsonsYOPTA');
+            // })
         } catch (e) {
             console.error(e);
         }
@@ -20,25 +23,37 @@ class JsonsDAO {
         try {
             const dbResponse = await jsons.insertOne(obj);
             console.log(dbResponse);
+            return dbResponse.insertedId;
         } catch (e) {
             console.error(e);
         }
     }
 
-    static async updateJSONinDB(obj, _id) {
+    static async updateJSONinDB(data, _id) {
         try {
-            const dbResponse = await jsons.replaceOne({
-                "_id": ObjectID(_id) 
-            }, obj);
+            const updateDoc = {
+                $set: {
+                    "JSONobject": data.JSONobject,
+                    "name": data.name
+                }
+            };
+            const dbResponse = await jsons.updateOne({
+                "_id": ObjectID(_id)
+            }, updateDoc);
             console.log(dbResponse);
         } catch (e) {
             console.error(e);
         }
     }
 
-    static async listJsons() {
+    static async listJsons(forUserId) {
         try {
-            const cursor = await jsons.find().project({name: 1});
+            const cursor = await jsons.find(
+                forUserId
+                && {
+                    "userId": forUserId
+                }
+            ).project({ JSONobject: 0 , userId: 0});
             const allJsons = cursor.toArray();
             return allJsons;
         } catch (e) {
@@ -48,7 +63,7 @@ class JsonsDAO {
 
     static async getById(_id) {
         try {
-            const cursor = await jsons.find({"_id": ObjectID(_id)});
+            const cursor = await jsons.find({"_id": ObjectID(_id)}).project({ userId: 0 });
             const gotJson = await cursor.next();
             return gotJson;
         } catch (e) {

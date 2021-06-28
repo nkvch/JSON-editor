@@ -14,7 +14,9 @@ const SearchForJson = (props) => {
 
     const fetching = async(url) => {
         try {
-            const res = await fetch(url);
+            const res = await fetch(url, {
+              mode: 'cors'
+            });
             if (res.status !== 200) {
                 dispatch(error(res));
                 return '';
@@ -28,7 +30,10 @@ const SearchForJson = (props) => {
             }
             return rawData;
         } catch (e) {
-            dispatch(error(e));
+            const res = await fetch(url, {
+              mode: 'no-cors'
+            });
+            dispatch(error(res));
             return '';
         }
     }

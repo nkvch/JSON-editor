@@ -34,7 +34,7 @@ const Alerts = (props) => {
             {
                 stack.length > 0 && stack.map((response, idx) => 
                 <Alert key={idx} variant={response.status === 200 ? 'success' : 'danger'} className='main-alert'>
-                    {response.data?.msg || response.statusText || 'JSON is found'}
+                    {response.data?.msg || response.statusText || (response.status === 0 ? 'Request is blocked by CORS' : 'JSON is fetched')}
                 </Alert>)
             }
         </div>

@@ -37,7 +37,6 @@ const SaveAndLoad = (props) => {
     }, [fromDB]);
 
     useEffect(() => {
-      console.log(userData);
       if (userData) {
         dispatch(loadJsons());
       }
@@ -75,6 +74,7 @@ const SaveAndLoad = (props) => {
             notifyParent(jsonName, obj);
         } catch (e) {
             console.error(e);
+            dispatch(error(e));
         }  
     }
 
@@ -84,7 +84,6 @@ const SaveAndLoad = (props) => {
           const res = await JsonHTTPservice.getById(_id, userData._id, token);
           const chosenObj = res.data.json.JSONobject;
           const nameOfChosen = res.data.json.name;
-          console.log(chosenObj);
           dispatch(success(res));
           setMongoId(res.data.json._id);
           notifyParent(nameOfChosen, chosenObj);

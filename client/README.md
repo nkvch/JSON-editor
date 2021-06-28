@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+### JSON editor
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Served in Heroku: [https://json-editor-1.herokuapp.com/](https://json-editor-1.herokuapp.com/)
 
-## Available Scripts
+![](../images/screenshot.png)
 
-In the project directory, you can run:
+### Set up
 
-### `npm start`
+To install client dependencies first of all clone the root directory
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+`git clone https://github.com/nkvch/JSON-editor1`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Then in the root directory run to install React-app dependencies
 
-### `npm test`
+`npm run client-install`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run the app run
 
-### `npm run build`
+`npm run dev`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Editing JSON
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+App allows to fetch JSON object from url like on the screenshot above and also to upload a JSON from local machine:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![](../images/upload_local.png)
 
-### `npm run eject`
+Uploaded or fetched JSON is interpreted as JS-object and can be edited (changing object's values and reducing arrays is possible, creating new values or new JSON from scratch as well as changing JSON keys will be possible in upcoming version).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+String values are interpreted as `type="text"` input fields, number values - as `type="number"` input fields:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![](../images/number.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Booleans are interpreted as switches:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![](../images/boolean_unswitched.png)
 
-## Learn More
+So that they could be easily changed:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![](../images/boolean_switched.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Values like `#123456` are interpreted as color-pickers:
 
-### Code Splitting
+![](../images/color.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Edited JSON can be easily downloaded locally:
 
-### Analyzing the Bundle Size
+![](../images/download.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Features for logged in users
 
-### Making a Progressive Web App
+Soon as user has created an account and logged in (all passwords are got `bcrypt`ed when creating an account) saving to and extracting JSONs from remote database (mongo Atlas) becomes available.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+After clicking the Save button user is asked to give a name for JSON:
 
-### Advanced Configuration
+![](../images/saving.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Saved JSONs are available from dropdown:
 
-### Deployment
+![](../images/saved.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+After extracting JSON user can edit it, download it and update it's version in database by clicking Save one more time.
 
-### `npm run build` fails to minify
+![](../images/extract.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Technology stack
+
+App is build on MERN stack using Redux for state managment, Bootstrap and some custom Scss for styling. 
+
+Client is a React application build on Hooks, server is NodeJS Express app, MongoDB Atlas is used as remote data storage to save JSONs.
+
+App state is preserved in Redux. Using `redux-persist` storage to store JWT token (1 day token) allows to still be logged in after refreshing and not loosing actual processed JSON. 
+ 
